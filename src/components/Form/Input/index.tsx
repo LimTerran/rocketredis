@@ -1,12 +1,14 @@
-import { useField } from '@unform/core'
 import React, {
   useState,
   useCallback,
   InputHTMLAttributes,
   useRef,
-  useEffect
+  useEffect,
+  memo
 } from 'react'
 import { FiAlertCircle } from 'react-icons/fi'
+
+import { useField } from '@unform/core'
 
 import { Container, TitleContainer, InputContainer } from './styles'
 
@@ -36,13 +38,13 @@ const Input: React.FC<InputProps> = ({ label, name, hint, ...rest }) => {
         ref: inputRef.current
       })
     }
-  }, [])
+  }, [registerField, fieldName])
 
   const handleInputFocus = useCallback(() => {
     setIsFocused(true)
 
     clearError()
-  }, [])
+  }, [clearError])
 
   const handleInputBlur = useCallback(() => {
     setIsFocused(false)
@@ -73,4 +75,4 @@ const Input: React.FC<InputProps> = ({ label, name, hint, ...rest }) => {
   )
 }
 
-export default Input
+export default memo(Input)

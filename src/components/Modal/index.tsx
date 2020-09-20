@@ -1,12 +1,14 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, memo } from 'react'
 import ReactModal from 'react-modal'
 
 import { Container } from './styles'
 
-export interface ModalProps {
+export interface SharedModalProps {
   visible?: boolean
   onRequestClose?: () => void
 }
+
+type ModalProps = React.PropsWithChildren<SharedModalProps>
 
 const Modal: React.FC<ModalProps> = ({
   visible = false,
@@ -25,7 +27,7 @@ const Modal: React.FC<ModalProps> = ({
     }
 
     setIsOpen(false)
-  }, [])
+  }, [onRequestClose])
 
   return (
     <ReactModal
@@ -41,4 +43,4 @@ const Modal: React.FC<ModalProps> = ({
   )
 }
 
-export default Modal
+export default memo(Modal)

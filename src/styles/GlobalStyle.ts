@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     color: #E1E1E6;
     background: transparent;
+    -webkit-font-smoothing: antialiased;
   }
 
   body, input, button {
@@ -36,7 +37,7 @@ export const GlobalStyle = createGlobalStyle`
     &::before {
       width: 1px;
       height: 24px;
-      background: ${props => props.theme.backgrounds.lightest};
+      background: rgba(255, 255, 255, 0.1);
       content: '';
     }
   }
@@ -72,5 +73,21 @@ export const GlobalStyle = createGlobalStyle`
     &:focus {
       outline: 0;
     }
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  ::-webkit-scrollbar-track {
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
   }
 `
